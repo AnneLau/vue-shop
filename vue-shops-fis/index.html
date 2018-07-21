@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
+	<title>凤舞冰瀚购物</title>
+
+    <link rel="stylesheet" href="/project/vue-shops/static/css/module_fed9c6d.css" />
+</head>
+<body>
+	<!-- 容器元素 -->
+	<div id="app">
+		<!-- 由于头部在所有的页面中，都能用到，所以写在vue实例化对象的模板中 -->
+		<header class="header">
+			<div class="go-back" @click="goBack"><span class="arrow"><span class="arrow green"></span></span></div>
+			<div class="login">登录</div>
+			<h1>世纪淘美食商城</h1>
+		</header>
+		<div class="search" v-show="view !== 'detail'"><input type="text" v-model="searchValue" placeholder="请输入搜索关键字" @keyup.enter="sendValue"></div>
+		<!-- 一个页面可以对应一个组件 -->
+		<!-- <home></home>
+		<list></list>
+		<detail></detail> -->
+		<!-- 万能组件 -->
+		<component :is="view" :route="route" :send-child-value="sendChildValue"></component>
+	</div>
+<!-- 定义模板 -->
+<template id="tpl_home">
+	<section class="home">
+		<ul class="nav clearfix">
+			<li v-for="item in nav">
+				<a :href="'#/list/type/' + item.id">
+					<img :src="'img/icon/' + item.img" alt="">
+					<p>{{item.title}}</p>
+				</a>
+			</li>
+		</ul>
+		<!-- 广告模块 -->
+			<ul class="as clearfix">
+				<li v-for="(item, index) in as">
+				<a :href="'#/detail/' + item.id">
+					<h3 :class="'color-' + index">{{item.title}}</h3>
+					<p>{{item.description}}</p>
+						<img :src="'img/as/' + item.url" alt="">
+				</a>
+			</li>
+		</ul>
+		<!-- 猜一猜模块 -->
+		<div class="guess">
+			<h2>猜你喜欢</h2>
+		</div>
+		<ul class="product-list">
+			<li v-for="item in list">
+				<a :href="'#/detail/' + item.id">
+					<img :src="'img/list/' + item.img" alt="">
+					<div class="right-container">
+						<h3>{{item.title}}</h3>
+						<p>
+							<span class="price">{{item.price}}元</span>
+							<span class="origin-price">门市价:{{item.originPrice}}元</span>
+							<span class="sales">销量{{item.sales}}</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+</template>
+<!-- 列表页模板 -->
+<template id="tpl_list">
+	<section class="list">
+		<ul class="order clearfix">
+			<li :data-id="item.id" v-for="item in order" @click="listOrder(item.id)">
+				<span class="title">{{item.title}}</span>
+				<span class="arrow"></span>
+			</li>
+		</ul>
+		<!-- 列表 -->
+		<ul class="product-list">
+			<li v-for="item in dealList">
+				<a :href="'#/detail/' + item.id">
+					<img :src="'img/list/' + item.img" alt="">
+					<div class="right-container">
+						<h3>{{item.title}}</h3>
+						<p>
+							<span class="price">{{item.price}}元</span>
+							<span class="origin-price">门市价{{item.originPrice}}元</span>
+							<span class="sales">销量{{item.sales}}</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="loader-more" @click="showOther" v-show="other.length">
+			<span class="title">查看其它{{other.length}}条团购</span>
+			<span class="arrow">
+				<span class="arrow white"></span>
+			</span>
+		</div>
+	</section>
+</template>
+<!-- 详情页模板 -->
+<template id="tpl_detail">
+	<section class="detail">
+		<div class="banner-part">
+			<!-- 如果没有地址，不要创建图片元素，就不会发送请求了 -->
+			<img v-if="data.src" :src="'img/item/' + data.src" alt="">
+			<h1>{{data.title}}</h1>
+			<p>{{data.description}}</p>
+		</div>
+		<div class="price-part">
+			<span class="price"><b>{{data.price}}</b>元</span>
+			<span class="origin-price">门市价{{data.originPrice}}元</span>
+			<span class="buy">立即购买</span>
+		</div>
+		<ul class="sale-part clearfix">
+				 <li>支持立即退款</li>
+			<li>支持随时退货</li>
+			<li>销量{{data.sales}}</li>
+		</ul>
+		<div class="store-part module">
+			<div class="module-header">店家信息</div>
+			<div class="module-body">
+				<p>{{data.storeName}}</p>
+				<p>{{data.storeAddress}}</p>
+			</div>
+			<div class="module-footer">查看{{data.storeNum}}家分店</div>
+		</div>
+		<div class="buy-part module">
+			<div class="module-header">购买须知</div>
+			<div class="module-body">
+				<h3>有效日期</h3>
+				<p>{{data.validateTime}}</p>
+				<h3>使用日期</h3>
+				<p>{{data.useTime}}</p>
+				<h3>使用规则</h3>
+				<ul>
+					<li v-for="item in data.rules">{{item}}</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</template>
+<!-- 引入脚本 -->
+
+<script type="text/javascript" src="/project/vue-shops/static/js/lib_4dec5ae.js"></script>
+<script type="text/javascript" src="/project/vue-shops/static/js/module_7a97e02.js"></script>
+<script>
+	// 引入入口文件
+	require('module/router/router')
+</script>
+</body>
+</html>

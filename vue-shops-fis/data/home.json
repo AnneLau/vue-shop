@@ -1,0 +1,91 @@
+{
+	"errno": 0,
+	"data": {
+		"as": [
+			{
+				"title": "我们约吧",
+				"description": "恋人嫁人好朋友",
+				"id": "1",
+				"url": "01.png"
+			},
+			{
+				"title": "10元毕业游",
+				"description": "学生过暑期",
+				"id": "2",
+				"url": "02.png"
+			},
+			{
+				"title": "聚餐宴请",
+				"description": "朋友家人常聚餐",
+				"id": "3",
+				"url": "03.png"
+			}
+		],
+		"list": [
+			{
+				"img": "05.jpg",
+				"title": "滇草香云南原生态汤火锅",
+				"sales": 5740,
+				"price": 278,
+				"originPrice": 613,
+				"id": "1"
+			},
+			{
+				"img": "06.jpg",
+				"title": "美味甜蛋糕",
+				"sales": 101,
+				"price": 189,
+				"originPrice": 358,
+				"id": "2"
+			},
+			{
+				"img": "07.jpg",
+				"title": "巴乡石锅鱼",
+				"sales": 241,
+				"price": 89,
+				"originPrice": 105,
+				"id": "3"
+			},
+			{
+				"img": "08.jpg",
+				"title": "贝可芯蛋糕",
+				"sales": 13126,
+				"price": 45.5,
+				"originPrice": 60,
+				"id": "4"
+			},
+			{
+				"img": "03.jpg",
+				"title": "欧巴石锅",
+				"sales": 9890,
+				"price": 49.9,
+				"originPrice": 70,
+				"id": "5"
+			},
+			{
+				"img": "04.jpg",
+				"title": "人民公社大食堂",
+				"sales": 256,
+				"price": 260,
+				"originPrice": 300,
+				"id": "6"
+			},
+			{
+				"img": "09.jpg",
+				"title": "商务套餐，建议2-3人使用",
+				"sales": 11,
+				"price": 198,
+				"originPrice": 338,
+				"id": "9"
+			},
+			{
+				"img": "10.jpg",
+				"title": "超值套餐，建议2人使用",
+				"sales": 90,
+				"price": 68,
+				"originPrice": 148,
+				"id": "10"
+			}
+		]
+	}
+}
